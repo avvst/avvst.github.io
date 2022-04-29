@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>VoViT</title>
+
+  
+  <meta name="author" content="Anonymous">
+  
+
+  <meta name="description" content="Low Latency Graph-based Audio-Visual Voice Separation">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="AV-Voice Separation Transformer" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+      <link rel="stylesheet" href="/assets/css/customstyles.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/vendor/font-awesome/css/mystyles.css">
+    
+      <link rel="stylesheet" href="/assets/vendor/simple-line-iconscss/simple-line-icons.css">
+    
+      <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    
+      <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/assets/css/landing-page.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="AV-Voice Separation Transformer">
+  <meta property="og:title" content="VoViT">
+  <meta property="og:description" content="Low Latency Graph-based Audio-Visual Voice Separation">
+
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/architecture/">
+  <link rel="canonical" href="http://localhost:4000/architecture/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="VoViT">
+  <meta property="twitter:description" content="Low Latency Graph-based Audio-Visual Voice Separation">
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav style="padding-bottom: 0"
+        class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" style="font-weight: 800; color: #404040"
+       href="http://localhost:4000/"> Home </a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/demos">Demos</a></li></ul>
+  </div>
+
+  
+
+  
+
+</nav>
+
+
+  
+<!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="page-heading">
+          <h1>VoViT</h1>
+          
+            
+                <hr class="small">
+                <span class="page-subheading" style="font-size: 1.57749rem;">Low Latency Graph-based Audio-Visual Voice Separation</span>
+              
+            
+          
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md " role="main">
+    <div class="row">
+        <!-- <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">-->
+        <div class=" col-xl-10 col-lg-10 offset-lg-1 ">
+            
+
+            <div class="lead mb-0" align="justify" style="padding-bottom: 1em">
+The VoViT model consist of TODO 
+</div>
+
+<p><img src="../img/model.png" alt="VoViT" /></p>
+
+<h2 id="latency">Latency</h2>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:0px;color:#002b36;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:0px;color:#fdf6e3;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-c3ow">Preprocessing</th>
+    <th class="tg-c3ow" colspan="2">Inference</th>
+    <th class="tg-c3ow">Preprocessing + Inference</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">Graph Network</td>
+    <td class="tg-c3ow">Whole model</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">VoViT-s1</td>
+    <td class="tg-c3ow">17.95</td>
+    <td class="tg-c3ow">4.50</td>
+    <td class="tg-c3ow">52.21</td>
+    <td class="tg-c3ow">82.18</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">VoViT</td>
+    <td class="tg-c3ow">17.95</td>
+    <td class="tg-c3ow">4.55</td>
+    <td class="tg-c3ow">57.45</td>
+    <td class="tg-c3ow">93.31</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">VoViT-s1 fp16</td>
+    <td class="tg-c3ow">10.94</td>
+    <td class="tg-c3ow">2.88</td>
+    <td class="tg-c3ow">30.47</td>
+    <td class="tg-c3ow">52.43</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">VoViT fp16</td>
+    <td class="tg-c3ow">10.94</td>
+    <td class="tg-c3ow">2.86</td>
+    <td class="tg-c3ow">34.18</td>
+    <td class="tg-c3ow">46.14</td>
+  </tr>
+</tbody>
+</table>
+
+<p>Latency estimation for the different variants of VoViT. Average of 10 runs, batch size 100. Device: Nvidia RTX 3090. GPU utilization &gt;98%, memory on demand. Two forward passed done to warm up. 
+Timing corresponds to ms to process 10s of audio</p>
+
+<p><strong>Note: Pytorch version is no longer supporting complex32 dtype in pytorch 1.11</strong></p>
+
+<div class="lead mb-0" align="justify" style="padding-bottom: 1em">
+TODO
+</div>
+
+
+            
+
+            
+
+        </div>
+    </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        Anonymous
+        &nbsp;&bull;&nbsp;
+      
+      2022
+
+      
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/videoplayback.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>AV-Voice Separation Transformer</title>
+
+  
+  <meta name="author" content="Anonymous">
+  
+
+  <meta name="description" content="We strongly recommend to use headphones to listen to the samples. Real World Speech Examples Example1 Spectrogram of the Voice Mixture Target Speaker VoViT (Ours) Visual Voice [1] Example2 Spectrogram of the Voice Mixture Target Speaker VoViT (Ours) Visual Voice [1] Singing Voice Examples Aicha Song Cover Play Stop Target...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="AV-Voice Separation Transformer" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+      <link rel="stylesheet" href="/assets/css/customstyles.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/vendor/font-awesome/css/mystyles.css">
+    
+      <link rel="stylesheet" href="/assets/vendor/simple-line-iconscss/simple-line-icons.css">
+    
+      <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    
+      <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="/assets/css/landing-page.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="AV-Voice Separation Transformer">
+  <meta property="og:title" content="AV-Voice Separation Transformer">
+  <meta property="og:description" content="We strongly recommend to use headphones to listen to the samples. Real World Speech Examples Example1 Spectrogram of the Voice Mixture Target Speaker VoViT (Ours) Visual Voice [1] Example2 Spectrogram of the Voice Mixture Target Speaker VoViT (Ours) Visual Voice [1] Singing Voice Examples Aicha Song Cover Play Stop Target...">
+
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/demos/">
+  <link rel="canonical" href="http://localhost:4000/demos/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="AV-Voice Separation Transformer">
+  <meta property="twitter:description" content="We strongly recommend to use headphones to listen to the samples. Real World Speech Examples Example1 Spectrogram of the Voice Mixture Target Speaker VoViT (Ours) Visual Voice [1] Example2 Spectrogram of the Voice Mixture Target Speaker VoViT (Ours) Visual Voice [1] Singing Voice Examples Aicha Song Cover Play Stop Target...">
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav style="padding-bottom: 0"
+        class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" style="font-weight: 800; color: #404040"
+       href="http://localhost:4000/"> Home </a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/demos">Demos</a></li></ul>
+  </div>
+
+  
+
+  
+
+</nav>
+
+
+  
+<!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+<div class="intro-header"></div>
+
+
+
+<div class=" container-md " role="main">
+    <div class="row">
+        <!-- <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">-->
+        <div class=" col-xl-10 col-lg-10 offset-lg-1 ">
+            
+
+            <p class="lead mb-0" align="justify">
+    We <b>strongly recommend to use headphones</b> to listen to the samples.
+</p></br>
+<h1>Real World Speech Examples</h1>
+
+<div class="row">
+    <div class="border">
+        <div class="row" style="padding-bottom: 1em">
+        <div class="column" style="padding-left: 1em; padding-right: 1em">
+            <h4>Example1</h4>
+        </div>
+        </div>
+        <div style="display: flex">
+            <div class="col-xs-1 excol3" style="margin-left: 2em">
+                <video height="250" controls>
+                  <source src="../resources/ours/interview/interview_compressed.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="col-xs-1 excol3" style="margin-left: 2em">
+                <div class="src4_model">Spectrogram of the Voice Mixture</div>
+                <img class="spec"
+                     src="../resources/ours/interview/mix.png">
+            </div>
+        </div>
+        </br>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <h5 style="align-content: center">Target Speaker</h5>
+                        <video width="220" height="220" autoplay muted loop>
+                          <source src="../resources/ours/interview/speaker1_landmarks.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../resources/ours/interview/s1_sp.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/ours/interview/speaker1_estimated.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Visual Voice [1]</div>
+                        <img class="spec"
+                             src="../resources/visual_voice/speaker1_interview.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/visual_voice/speaker1_interview.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <video width="220" height="220" autoplay muted loop>
+                          <source src="../resources/ours/interview/speaker2_landmarks.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <img class="spec"
+                             src="../resources/ours/interview/s2_sp.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/ours/interview/speaker2_estimated.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 excol3">
+                        <img class="spec"
+                             src="../resources/visual_voice/speaker2_interview.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/visual_voice/speaker2_interview.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br></br>
+
+<div class="row">
+    <div class="border">
+        <div class="row" style="padding-bottom: 1em">
+        <div class="column" style="padding-left: 1em; padding-right: 1em">
+            <h4>Example2</h4>
+        </div>
+        </div>
+        <div style="display: flex">
+            <div class="col-xs-1 excol3" style="margin-left: 2em">
+                <video height="250" controls>
+                  <source src="../resources/ours/comedy/comedy_compressed.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="col-xs-1 excol3" style="margin-left: 2em">
+                <div class="src4_model">Spectrogram of the Voice Mixture</div>
+                <img class="spec"
+                     src="../resources/ours/comedy/mix.png">
+            </div>
+        </div>
+        </br>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <h5 style="align-content: center">Target Speaker</h5>
+                        <video width="220" height="220" autoplay muted loop>
+                          <source src="../resources/ours/comedy/speaker1_landmarks.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../resources/ours/comedy/s1_sp.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/ours/comedy/speaker1_estimated.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Visual Voice [1]</div>
+                        <img class="spec"
+                             src="../resources/visual_voice/speaker1_comedy.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/visual_voice/speaker1_comedy.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <video width="220" height="220" autoplay muted loop>
+                          <source src="../resources/ours/comedy/speaker2_landmarks.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <img class="spec"
+                             src="../resources/ours/comedy/s2_sp.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/ours/comedy/speaker2_estimated.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 excol3">
+                        <img class="spec"
+                             src="../resources/visual_voice/speaker2_comedy.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../resources/visual_voice/speaker2_comedy.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br></br>
+
+<h1>Singing Voice Examples</h1>
+
+
+<div class="row" style="padding-bottom: 1em">
+    <div class="column" style="padding-left: 1em; padding-right: 1em">
+        <h4>Aicha Song Cover</h4>
+    </div>
+    <div class="column" style="padding-left: 1em">
+        <div class="videoplay" videoid="#fs">
+            <button type="button" class="btn btn-outline-primary">Play</button>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-sm-3 videostop" videoid="#fs">
+            <button type="button" class="btn btn-outline-primary">Stop</button>
+        </div>
+    </div>
+</div>
+<iframe id="fs" class="fs_video"
+        width="100%" height="345"
+        src="https://www.youtube.com/embed/it6Ud6PDPes?start=142&end=146&showinfo=0&controls=0&enablejsapi=1&disablekb=1"
+        title="Aicha Song Cover" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</br>
+<div class="row">
+    <div class="border">
+        <div class="col">
+            <h5>Target Voice: Lead Singer (center)</h5>
+        </div>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">Mixture</div>
+                        <img class="spec"
+                             src="../estimated_demo/it6Ud6PDPes_2_22_to_2_27/mix.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/it6Ud6PDPes_2_22_to_2_27/mix.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../estimated_demo/it6Ud6PDPes_2_22_to_2_27/VoViT.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/it6Ud6PDPes_2_22_to_2_27/VoViT.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Y-Net-graph [1]</div>
+                        <img class="spec"
+                             src="../estimated_demo/it6Ud6PDPes_2_22_to_2_27/y-net-gr7.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/it6Ud6PDPes_2_22_to_2_27/y-net-gr7.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br></br>
+
+
+<div class="row" style="padding-bottom: 1em">
+    <div class="column" style="padding-left: 1em; padding-right: 1em">
+        <h4>Beatbox Example</h4>
+    </div>
+    <div class="column" style="padding-left: 1em">
+        <div class="videoplay" videoid="#bbox">
+            <button type="button" class="btn btn-outline-primary">Play</button>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-sm-3 videostop" videoid="#bbox">
+            <button type="button" class="btn btn-outline-primary">Stop</button>
+        </div>
+    </div>
+</div>
+<iframe id="bbox" class="bbox_video"
+        width="100%" height="345"
+        src="https://www.youtube.com/embed/WikcPREx0DM?start=132&end=136&showinfo=0&controls=0&enablejsapi=1&disablekb=1"
+        title="Beatbox Song" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</br>
+<div class="row">
+    <div class="border">
+        <div class="col">
+            <h5>Target Voice: Beatbox</h5>
+        </div>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">Mixture</div>
+                        <img class="spec"
+                             src="../estimated_demo/WikcPREx0DM_2_12_to_2_17/mix.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/WikcPREx0DM_2_12_to_2_17/mix.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../estimated_demo/WikcPREx0DM_2_12_to_2_17/VoViT.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/WikcPREx0DM_2_12_to_2_17/VoViT.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Y-Net-graph [1]</div>
+                        <img class="spec"
+                             src="../estimated_demo/WikcPREx0DM_2_12_to_2_17/y-net-gr7.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/WikcPREx0DM_2_12_to_2_17/y-net-gr7.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br></br>
+
+
+
+<div class="row" style="padding-bottom: 1em">
+    <div class="column" style="padding-left: 1em; padding-right: 1em">
+        <h4>Uptown Girl</h4>
+    </div>
+    <div class="column" style="padding-left: 1em">
+        <div class="videoplay" videoid="#ug2">
+            <button type="button" class="btn btn-outline-primary">Play</button>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-sm-3 videostop" videoid="#ug2">
+            <button type="button" class="btn btn-outline-primary">Stop</button>
+        </div>
+    </div>
+</div>
+<iframe id="ug2" class="ug2_video"
+        width="100%" height="345"
+        src="https://www.youtube.com/embed/q9vqt-lwy3I?start=94&end=98&showinfo=0&controls=0&enablejsapi=1&disablekb=1"
+        title="Uptown Girl #2" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</br>
+<div class="row">
+    <div class="border">
+        <div class="col">
+            <h5>Target Voice: Lead voice (center)</h5>
+        </div>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">Mixture</div>
+                        <img class="spec"
+                             src="../estimated_demo/q9vqt-lwy3I_1_33_to_1_43/mix.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/q9vqt-lwy3I_1_33_to_1_43/mix.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../estimated_demo/q9vqt-lwy3I_1_33_to_1_43/VoViT.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/q9vqt-lwy3I_1_33_to_1_43/VoViT.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Y-Net-graph [1]</div>
+                        <img class="spec"
+                             src="../estimated_demo/q9vqt-lwy3I_1_33_to_1_43/y-net-gr7.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/q9vqt-lwy3I_1_33_to_1_43/y-net-gr7.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br></br>
+
+
+<div class="row" style="padding-bottom: 1em">
+    <div class="column" style="padding-left: 1em; padding-right: 1em">
+        <h4>Aretha Franklin - Respect #1</h4>
+    </div>
+    <div class="column" style="padding-left: 1em">
+        <div class="videoplay" videoid="#afr1">
+            <button type="button" class="btn btn-outline-primary">Play</button>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-sm-3 videostop" videoid="#afr1">
+            <button type="button" class="btn btn-outline-primary">Stop</button>
+        </div>
+    </div>
+</div>
+<iframe id="afr1" class="afr1_video"
+        width="100%" height="345"
+        src="https://www.youtube.com/embed/kce_zDH-OVA?start=46&end=50&showinfo=0&controls=0&enablejsapi=1&disablekb=1"
+        title="Aretha Franklin - Respect #1" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</br>
+<div class="row">
+    <div class="border">
+        <div class="col">
+            <h5>Target Voice: Lead voice (center)</h5>
+        </div>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">Mixture</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_0_43_to_0_5/mix.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_0_43_to_0_5/mix.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_0_43_to_0_5/VoViT.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_0_43_to_0_5/VoViT.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Y-Net-graph [1]</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_0_43_to_0_5/y-net-gr7.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_0_43_to_0_5/y-net-gr7.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br></br>
+
+
+<div class="row" style="padding-bottom: 1em">
+    <div class="column" style="padding-left: 1em; padding-right: 1em">
+        <h4>Aretha Franklin - Respect #2</h4>
+    </div>
+    <div class="column" style="padding-left: 1em">
+        <div class="videoplay" videoid="#afr2">
+            <button type="button" class="btn btn-outline-primary">Play</button>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-sm-3 videostop" videoid="#afr2">
+            <button type="button" class="btn btn-outline-primary">Stop</button>
+        </div>
+    </div>
+</div>
+<iframe id="afr2" class="afr1_video"
+        width="100%" height="345"
+        src="https://www.youtube.com/embed/kce_zDH-OVA?start=102&end=106&showinfo=0&controls=0&enablejsapi=1&disablekb=1"
+        title="Aretha Franklin - Respect #2" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</br>
+<div class="row">
+    <div class="border">
+        <div class="col">
+            <h5>Target Voice: Lead voice (center)</h5>
+        </div>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">Mixture</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_1_42_to_1_5/mix.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_1_42_to_1_5/mix.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_1_42_to_1_5/VoViT.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_1_42_to_1_5/VoViT.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Y-Net-graph [1]</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_1_42_to_1_5/y-net-gr7.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_1_42_to_1_5/y-net-gr7.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br></br>
+
+
+<div class="row" style="padding-bottom: 1em">
+    <div class="column" style="padding-left: 1em; padding-right: 1em">
+        <h4>Aretha Franklin - Respect #3</h4>
+    </div>
+    <div class="column" style="padding-left: 1em">
+        <div class="videoplay" videoid="#afr3">
+            <button type="button" class="btn btn-outline-primary">Play</button>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-sm-3 videostop" videoid="#afr3">
+            <button type="button" class="btn btn-outline-primary">Stop</button>
+        </div>
+    </div>
+</div>
+<iframe id="afr3" class="afr3_video"
+        width="100%" height="345"
+        src="https://www.youtube.com/embed/kce_zDH-OVA?start=137&end=141&showinfo=0&controls=0&enablejsapi=1&disablekb=1"
+        title="Aretha Franklin - Respect #3" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</br>
+<div class="row">
+    <div class="border">
+        <div class="col">
+            <h5>Target Voice: Lead voice (center)</h5>
+        </div>
+        <div style="display: flex">
+            <div class="column" style="padding-left:0.9em;display: flex">
+                <div style="padding-top: 0.5em;display: flex">
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">Mixture</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_2_09_to_2_3/mix.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_2_09_to_2_3/mix.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 excol3">
+                        <div class="src4_model">VoViT (Ours)</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_2_09_to_2_3/VoViT.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_2_09_to_2_3/VoViT.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-1 excol3">
+                        <div style="padding-left: 80px">Y-Net-graph [1]</div>
+                        <img class="spec"
+                             src="../estimated_demo/kce_zDH-OVA_2_09_to_2_3/y-net-gr7.png">
+                        <div class="col-xs-1 excol3">
+                            <audio class="src4audio"
+                                   src="../estimated_demo/kce_zDH-OVA_2_09_to_2_3/y-net-gr7.mp3"
+                                   controls=""></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br></br>
+
+
+
+<div class="row">
+    <h3 class="col-sm-4" style="display: inline-block">References</h3>
+</div>
+
+<p class="lead mb-0" align="justify" style="font-size: 19px">
+    [1] Gao & Grauman, “VisualVoice: Audio-Visual Speech Separation with Cross-Modal Consistency,” in CVPR, 2021.
+    <br>
+    [2] Montesinos et al., “A cappella: Audio-visual Singing Voice Separation,” in BMVC, 2021.
+    </br>
+
+</p>
+
+            
+
+            
+
+        </div>
+    </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        Anonymous
+        &nbsp;&bull;&nbsp;
+      
+      2022
+
+      
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/videoplayback.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
